@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>converter</id>
+    <name>Converter</name>
+    <summary>Конвертация файлов в pdf через апи онлиоффиса</summary>
+    <description><![CDATA[Многие сталкивались при работе с онлиоффис что он при конвертации в .pdf сохраняет их в телефон или на компьютер .что не совсем удобно при работе с мобильного устройства. Так вот теперь необхидомости в конвертациисо скачиванием нет теперь сразу файл сохраняется на облаке.]]></description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author mail="admin@berkut2123.ru" >Berkut2123</author>
+    <namespace>Converter</namespace>
+    <category>tools</category>
+    <bugs>https://github.com/berkut2123/converter/issues</bugs>
+	<repository type="git">https://github.com/berkut2123/Converter2.git</repository>
+    <dependencies>
+        <owncloud min-version="9.0" max-version="10.0" />
+        <nextcloud min-version="12" max-version="13"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Converter</name>
+            <route>converter.page.index</route>
+        </navigation>
+    </navigations>
+	<settings>
+        <admin>OCA\Converter\AdminSettings</admin>
+        <admin-section>OCA\Converter\AdminSection</admin-section>
+    </settings>
+</info>
+

@@ -1,0 +1,15 @@
+{
+    "name": "Converter",
+    "description": "Конвертация файлов в pdf через апи онлиоффиса",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Berkut2123"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
+}
