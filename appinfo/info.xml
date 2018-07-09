@@ -22,8 +22,8 @@
     <category>organization</category>
     <category>tools</category>
     <website>https://www.onlyoffice.com</website>
-    <bugs>https://github.com/ONLYOFFICE/onlyoffice-owncloud/issues</bugs>
-    <repository type="git">https://github.com/ONLYOFFICE/onlyoffice-owncloud.git</repository>
+    <bugs>https://github.com/berkut2123/converter/issues</bugs>
+    <repository type="git">https://github.com/berkut2123/converter.git</repository>
     <screenshot small-thumbnail="https://raw.githubusercontent.com/ONLYOFFICE/onlyoffice-owncloud/master/screenshots/main_small.png">https://raw.githubusercontent.com/ONLYOFFICE/onlyoffice-owncloud/master/screenshots/main.png</screenshot>
     <screenshot>https://raw.githubusercontent.com/ONLYOFFICE/onlyoffice-owncloud/master/screenshots/settings.png</screenshot>
     <dependencies>
