@@ -49,7 +49,7 @@ class Application extends App {
     /**
      * Hash generator
      *
-     * @var OCA\Onlyoffice\Crypt
+     * @var OCA\Converter\Crypt
      */
     public $crypt;
 
