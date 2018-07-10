@@ -75,7 +75,7 @@ class AdminSettings implements ISettings {
      * @return string
      */
     public function getSection() {
-        return "onlyoffice";
+        return "Converter";
     }
 
     /**
