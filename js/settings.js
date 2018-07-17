@@ -10,14 +10,14 @@
  * THIS PROGRAM IS DISTRIBUTED WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR
  * FITNESS FOR A PARTICULAR PURPOSE. For more details, see GNU GPL at https://www.gnu.org/copyleft/gpl.html
  *
- * You can contact Ascensio System SIA by email at sales@onlyoffice.com
+ * You can contact Ascensio System SIA by email at sales@converter.com
  *
- * The interactive user interfaces in modified source and object code versions of ONLYOFFICE must display
+ * The interactive user interfaces in modified source and object code versions of converter must display
  * Appropriate Legal Notices, as required under Section 5 of the GNU GPL version 3.
  *
- * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original ONLYOFFICE logo which contains
+ * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original converter logo which contains
  * relevant author attributions when distributing the software. If the display of the logo in its graphic
- * form is not reasonably feasible for technical reasons, you must include the words "Powered by ONLYOFFICE"
+ * form is not reasonably feasible for technical reasons, you must include the words "Powered by converter"
  * in every copy of the program you distribute.
  * Pursuant to Section 7 § 3(e) we decline to grant you any rights under trademark law for use of our trademarks.
  *
@@ -26,69 +26,69 @@
 (function ($, OC) {
 
     $(document).ready(function () {
-        OCA.Onlyoffice = _.extend({}, OCA.Onlyoffice);
-        if (!OCA.Onlyoffice.AppName) {
-            OCA.Onlyoffice = {
-                AppName: "onlyoffice"
+        OCA.converter = _.extend({}, OCA.converter);
+        if (!OCA.converter.AppName) {
+            OCA.converter = {
+                AppName: "converter"
             };
         }
 
         var advToogle = function () {
-            $("#onlyofficeSecretPanel, #onlyofficeSaveBreak").toggleClass("onlyoffice-hide");
+            $("#converterSecretPanel, #converterSaveBreak").toggleClass("converter-hide");
         };
 
-        if ($("#onlyofficeInternalUrl").val().length
-            || $("#onlyofficeSecret").val().length
-            || $("#onlyofficeStorageUrl").val().length) {
+        if ($("#converterInternalUrl").val().length
+            || $("#converterSecret").val().length
+            || $("#converterStorageUrl").val().length) {
             advToogle();
         }
 
-        $("#onlyofficeAdv").click(function () {
+        $("#converterAdv").click(function () {
             advToogle();
         });
 
-        $("#onlyofficeSave").click(function () {
-            $(".section-onlyoffice").addClass("icon-loading");
-            var onlyofficeUrl = $("#onlyofficeUrl").val().trim();
+        $("#converterSave").click(function () {
+            $(".section-converter").addClass("icon-loading");
+            var converterUrl = $("#converterUrl").val().trim();
 
-            if (!onlyofficeUrl.length) {
-                $("#onlyofficeInternalUrl, #onlyofficeStorageUrl, #onlyofficeSecret").val("");
+            if (!converterUrl.length) {
+                $("#converterInternalUrl, #converterStorageUrl, #converterSecret").val("");
             }
 
-            var onlyofficeInternalUrl = ($("#onlyofficeInternalUrl:visible").val() || "").trim();
-            var onlyofficeStorageUrl = ($("#onlyofficeStorageUrl:visible").val() || "").trim();
-            var onlyofficeSecret = $("#onlyofficeSecret:visible").val() || "";
+            var converterInternalUrl = ($("#converterInternalUrl:visible").val() || "").trim();
+            var converterStorageUrl = ($("#converterStorageUrl:visible").val() || "").trim();
+            var converterSecret = $("#converterSecret:visible").val() || "";
 
             var defFormats = {};
-            $("input[id^=\"onlyofficeDefFormat\"]").each(function() {
+            $("input[id^=\"converterDefFormat\"]").each(function() {
                 defFormats[this.name] = this.checked;
             });
 
-            var sameTab = $("#onlyofficeSameTab").is(":checked");
+            var sameTab = $("#converterSameTab").is(":checked");
 
             $.ajax({
                 method: "PUT",
-                url: OC.generateUrl("apps/onlyoffice/ajax/settings"),
+                url: OC.generateUrl("apps/converter/ajax/settings"),
                 data: {
-                    documentserver: onlyofficeUrl,
-                    documentserverInternal: onlyofficeInternalUrl,
-                    storageUrl: onlyofficeStorageUrl,
-                    secret: onlyofficeSecret,
+                    documentserver: converterUrl,
+                    documentserverInternal: converterInternalUrl,
+                    storageUrl: converterStorageUrl,
+                    secret: converterSecret,
                     defFormats: defFormats,
                     sameTab: sameTab
                 },
                 success: function onSuccess(response) {
-                    $(".section-onlyoffice").removeClass("icon-loading");
+                    $(".section-converter").removeClass("icon-loading");
                     if (response && response.documentserver != null) {
-                        $("#onlyofficeUrl").val(response.documentserver);
-                        $("#onlyofficeInternalUrl").val(response.documentserverInternal);
-                        $("#onlyofficeStorageUrl").val(response.storageUrl);
-                        $("#onlyofficeSecret").val(response.secret);
+                        $("#converterUrl").val(response.documentserver);
+                        $("#converterInternalUrl").val(response.documentserverInternal);
+                        $("#converterStorageUrl").val(response.storageUrl);
+                        $("#converterSecret").val(response.secret);
 
                         var message =
                             response.error
-                                ? (t(OCA.Onlyoffice.AppName, "Error when trying to connect") + " (" + response.error + ")")
-                                : t(OCA.Onlyoffice.AppName, "Settings have been successfully updated");
+                                ? (t(OCA.converter.AppName, "Error when trying to connect") + " (" + response.error + ")")
+                                : t(OCA.converter.AppName, "Settings have been successfully updated");
                         var row = OC.Notification.show(message);
                         setTimeout(function () {
                             OC.Notification.hide(row);
@@ -98,10 +98,10 @@
             });
         });
 
-        $(".section-onlyoffice input").keypress(function (e) {
+        $(".section-converter input").keypress(function (e) {
             var code = e.keyCode || e.which;
             if (code === 13) {
-                $("#onlyofficeSave").click();
+                $("#converterSave").click();
             }
         });
     });

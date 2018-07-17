@@ -11,50 +11,50 @@
  * THIS PROGRAM IS DISTRIBUTED WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR
  * FITNESS FOR A PARTICULAR PURPOSE. For more details, see GNU GPL at https://www.gnu.org/copyleft/gpl.html
  *
- * You can contact Ascensio System SIA by email at sales@onlyoffice.com
+ * You can contact Ascensio System SIA by email at sales@converter.com
  *
- * The interactive user interfaces in modified source and object code versions of ONLYOFFICE must display
+ * The interactive user interfaces in modified source and object code versions of converter must display
  * Appropriate Legal Notices, as required under Section 5 of the GNU GPL version 3.
  *
- * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original ONLYOFFICE logo which contains
+ * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original converter logo which contains
  * relevant author attributions when distributing the software. If the display of the logo in its graphic
- * form is not reasonably feasible for technical reasons, you must include the words "Powered by ONLYOFFICE"
+ * form is not reasonably feasible for technical reasons, you must include the words "Powered by converter"
  * in every copy of the program you distribute.
  * Pursuant to Section 7 § 3(e) we decline to grant you any rights under trademark law for use of our trademarks.
  *
  */
 
-namespace OCA\Converter\AppInfo;
+namespace OCA\converter\AppInfo;
 
 use OCP\AppFramework\App;
 use OCP\Share\IManager;
 use OCP\Util;
 
-use OCA\Converter\AppConfig;
-use OCA\Converter\Controller\CallbackController;
-use OCA\Converter\Controller\EditorController;
-use OCA\Converter\Controller\SettingsController;
-use OCA\Converter\Crypt;
-use OCA\Converter\Hookhandler;
+use OCA\converter\AppConfig;
+use OCA\converter\Controller\CallbackController;
+use OCA\converter\Controller\EditorController;
+use OCA\converter\Controller\SettingsController;
+use OCA\converter\Crypt;
+use OCA\converter\Hookhandler;
 
 class Application extends App {
 
     /**
      * Application configuration
      *
-     * @var OCA\Converter\AppConfig
+     * @var OCA\converter\AppConfig
      */
     public $appConfig;
 
     /**
      * Hash generator
      *
-     * @var OCA\Converter\Crypt
+     * @var OCA\converter\Crypt
      */
     public $crypt;
 
     public function __construct(array $urlParams = []) {
-        $appName = "Converter";
+        $appName = "converter";
 
         parent::__construct($appName, $urlParams);
 
@@ -66,8 +66,8 @@ class Application extends App {
         $eventDispatcher->addListener("OCA\Files::loadAdditionalScripts",
             function() {
                 if (!empty($this->appConfig->GetDocumentServerUrl()) && $this->appConfig->SettingsAreSuccessful()) {
-                    Util::addScript("Converter", "main");
-                    Util::addStyle("Converter", "main");
+                    Util::addScript("converter", "main");
+                    Util::addStyle("converter", "main");
                 }
             });
 

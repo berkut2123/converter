@@ -11,20 +11,20 @@
  * THIS PROGRAM IS DISTRIBUTED WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR
  * FITNESS FOR A PARTICULAR PURPOSE. For more details, see GNU GPL at https://www.gnu.org/copyleft/gpl.html
  *
- * You can contact Ascensio System SIA by email at sales@onlyoffice.com
+ * You can contact Ascensio System SIA by email at sales@converter.com
  *
- * The interactive user interfaces in modified source and object code versions of ONLYOFFICE must display
+ * The interactive user interfaces in modified source and object code versions of converter must display
  * Appropriate Legal Notices, as required under Section 5 of the GNU GPL version 3.
  *
- * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original ONLYOFFICE logo which contains
+ * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original converter logo which contains
  * relevant author attributions when distributing the software. If the display of the logo in its graphic
- * form is not reasonably feasible for technical reasons, you must include the words "Powered by ONLYOFFICE"
+ * form is not reasonably feasible for technical reasons, you must include the words "Powered by converter"
  * in every copy of the program you distribute.
  * Pursuant to Section 7 § 3(e) we decline to grant you any rights under trademark law for use of our trademarks.
  *
  */
 
-namespace OCA\Converter;
+namespace OCA\converter;
 
 use OCP\IConfig;
 use OCP\ILogger;
@@ -32,7 +32,7 @@ use OCP\ILogger;
 /**
  * Application configutarion
  *
- * @package OCA\Onlyoffice
+ * @package OCA\converter
  */
 class AppConfig {
 
@@ -435,12 +435,12 @@ class AppConfig {
      * @var array
      */
     public $formats = [
-            "docx" => [ "mime" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "type" => "text", "edit" => true, "def" => true ],
-            "xlsx" => [ "mime" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "type" => "spreadsheet", "edit" => true, "def" => true ],
-            "pptx" => [ "mime" => "application/vnd.openxmlformats-officedocument.presentationml.presentation", "type" => "presentation", "edit" => true, "def" => true ],
-            "ppsx" => [ "mime" => "application/vnd.openxmlformats-officedocument.presentationml.slideshow", "type" => "presentation", "edit" => true, "def" => true ],
-            "txt" => [ "mime" => "text/plain", "type" => "text", "edit" => true ],
-            "csv" => [ "mime" => "text/csv", "type" => "spreadsheet", "edit" => true ],
+            "docx" => [ "mime" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "type" => "text", "conv" => true, "def" => true ],
+            "xlsx" => [ "mime" => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "type" => "spreadsheet", "conv" => true, "def" => true ],
+            "pptx" => [ "mime" => "application/vnd.openxmlformats-officedocument.presentationml.presentation", "type" => "presentation", "conv" => true, "def" => true ],
+            "ppsx" => [ "mime" => "application/vnd.openxmlformats-officedocument.presentationml.slideshow", "type" => "presentation", "conv" => true, "def" => true ],
+            "txt" => [ "mime" => "text/plain", "type" => "text", "conv" => true ],
+            "csv" => [ "mime" => "text/csv", "type" => "spreadsheet", "conv" => true ],
             "docm" => [ "mime" => "application/vnd.ms-word.document.macroEnabled.12", "type" => "text", "conv" => true ],
             "xlsm" => [ "mime" => "application/vnd.ms-excel.sheet.macroEnabled.12", "type" => "spreadsheet", "conv" => true ],
             "xltx" => [ "mime" => "application/vnd.openxmlformats-officedocument.spreadsheetml.template", "type" => "spreadsheet", "conv" => true ],
@@ -460,7 +460,7 @@ class AppConfig {
             "mht" => [ "mime" => "message/rfc822", "conv" => true ],
             "html" => [ "mime" => "text/html", "type" => "text", "conv" => true ],
             "htm" => [ "mime" => "text/html", "type" => "text", "conv" => true ],
-            "xps" => [ "mime" => "application/vnd.ms-xpsdocument", "type" => "text" ],
+            "xps" => [ "mime" => "application/vnd.ms-xpsdocument", "type" => "conv" ],
             "pdf" => [ "mime" => "application/pdf", "type" => "text" ],
             "djvu" => [ "mime" => "image/vnd.djvu", "type" => "text" ]
         ];

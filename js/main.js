@@ -10,14 +10,14 @@
  * THIS PROGRAM IS DISTRIBUTED WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR
  * FITNESS FOR A PARTICULAR PURPOSE. For more details, see GNU GPL at https://www.gnu.org/copyleft/gpl.html
  *
- * You can contact Ascensio System SIA by email at sales@onlyoffice.com
+ * You can contact Ascensio System SIA by email at sales@converter.com
  *
- * The interactive user interfaces in modified source and object code versions of ONLYOFFICE must display
+ * The interactive user interfaces in modified source and object code versions of converter must display
  * Appropriate Legal Notices, as required under Section 5 of the GNU GPL version 3.
  *
- * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original ONLYOFFICE logo which contains
+ * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original converter logo which contains
  * relevant author attributions when distributing the software. If the display of the logo in its graphic
- * form is not reasonably feasible for technical reasons, you must include the words "Powered by ONLYOFFICE"
+ * form is not reasonably feasible for technical reasons, you must include the words "Powered by converter"
  * in every copy of the program you distribute.
  * Pursuant to Section 7 § 3(e) we decline to grant you any rights under trademark law for use of our trademarks.
  *
@@ -25,27 +25,27 @@
 
 (function (OCA) {
 
-    OCA.Onlyoffice = _.extend({}, OCA.Onlyoffice);
-    if (!OCA.Onlyoffice.AppName) {
-        OCA.Onlyoffice = {
-            AppName: "onlyoffice"
+    OCA.converter = _.extend({}, OCA.converter);
+    if (!OCA.converter.AppName) {
+        OCA.converter = {
+            AppName: "converter"
         };
     }
 
-    OCA.Onlyoffice.setting = {};
+    OCA.converter.setting = {};
 
-    OCA.Onlyoffice.CreateFile = function (name, fileList) {
+    OCA.converter.CreateFile = function (name, fileList) {
         var dir = fileList.getCurrentDirectory();
 
-        if (!OCA.Onlyoffice.setting.sameTab) {
+        if (!OCA.converter.setting.sameTab) {
             var winEditor = window.open("");
             if (winEditor) {
-                winEditor.document.write(t(OCA.Onlyoffice.AppName, "Loading, please wait."));
+                winEditor.document.write(t(OCA.converter.AppName, "Loading, please wait."));
                 winEditor.document.close();
             }
         }
 
-        $.post(OC.generateUrl("apps/" + OCA.Onlyoffice.AppName + "/ajax/new"),
+        $.post(OC.generateUrl("apps/" + OCA.converter.AppName + "/ajax/new"),
             {
                 name: name,
                 dir: dir
@@ -63,9 +63,9 @@
                 }
 
                 fileList.add(response, { animate: true });
-                OCA.Onlyoffice.OpenEditor(response.id, winEditor);
+                OCA.converter.OpenEditor(response.id, winEditor);
 
-                var row = OC.Notification.show(t(OCA.Onlyoffice.AppName, "File created"));
+                var row = OC.Notification.show(t(OCA.converter.AppName, "File created"));
                 setTimeout(function () {
                     OC.Notification.hide(row);
                 }, 3000);
@@ -73,8 +73,8 @@
         );
     };
 
-    OCA.Onlyoffice.OpenEditor = function (fileId, winEditor) {
-        var url = OC.generateUrl("/apps/" + OCA.Onlyoffice.AppName + "/{fileId}",
+    OCA.converter.OpenEditor = function (fileId, winEditor) {
+        var url = OC.generateUrl("/apps/" + OCA.converter.AppName + "/{fileId}",
             {
                 fileId: fileId
             });
@@ -85,30 +85,30 @@
 
         if (winEditor && winEditor.location) {
             winEditor.location.href = url;
-        } else if (!OCA.Onlyoffice.setting.sameTab) {
+        } else if (!OCA.converter.setting.sameTab) {
             winEditor = window.open(url, "_blank");
         } else {
             location.href = url;
         }
     };
 
-    OCA.Onlyoffice.FileClick = function (fileName, context, attr) {
+    OCA.converter.FileClick = function (fileName, context, attr) {
         var fileInfoModel = context.fileInfoModel || context.fileList.getModelForFile(fileName);
         var fileList = context.fileList;
         if (!attr.conv || (fileList.dirInfo.permissions & OC.PERMISSION_CREATE) !== OC.PERMISSION_CREATE || $("#isPublic").val()) {
-            OCA.Onlyoffice.OpenEditor(fileInfoModel.id);
+            OCA.converter.OpenEditor(fileInfoModel.id);
             return;
         }
 
-        OC.dialogs.confirm(t(OCA.Onlyoffice.AppName, "The document file you open will be converted to the Office Open XML format for faster viewing and editing."),
-            t(OCA.Onlyoffice.AppName, "Convert and open document"),
+        OC.dialogs.confirm(t(OCA.converter.AppName, "The document file you open will be converted to the Office Open XML format for faster viewing and editing."),
+            t(OCA.converter.AppName, "Convert and open document"),
             function (convert) {
                 if (!convert) {
-                    OCA.Onlyoffice.OpenEditor(fileInfoModel.id);
+                    OCA.converter.OpenEditor(fileInfoModel.id);
                     return;
                 }
 
-                $.post(OC.generateUrl("apps/" + OCA.Onlyoffice.AppName + "/ajax/convert"),
+                $.post(OC.generateUrl("apps/" + OCA.converter.AppName + "/ajax/convert"),
                     {
                         fileId: fileInfoModel.id
                     },
@@ -125,7 +125,7 @@
                             fileList.add(response, { animate: true });
                         }
 
-                        var row = OC.Notification.show(t(OCA.Onlyoffice.AppName, "File created"));
+                        var row = OC.Notification.show(t(OCA.converter.AppName, "File created"));
                         setTimeout(function () {
                             OC.Notification.hide(row);
                         }, 3000);
@@ -133,16 +133,16 @@
             });
     };
 
-    OCA.Onlyoffice.GetSettings = function (callbackSettings) {
-        if (OCA.Onlyoffice.setting.formats) {
+    OCA.converter.GetSettings = function (callbackSettings) {
+        if (OCA.converter.setting.formats) {
 
             callbackSettings();
 
         } else {
 
-            $.get(OC.generateUrl("apps/" + OCA.Onlyoffice.AppName + "/ajax/settings"),
+            $.get(OC.generateUrl("apps/" + OCA.converter.AppName + "/ajax/settings"),
                 function onSuccess(settings) {
-                    OCA.Onlyoffice.setting = settings;
+                    OCA.converter.setting = settings;
 
                     callbackSettings();
                 }
@@ -151,40 +151,41 @@
         }
     };
 
-    OCA.Onlyoffice.FileList = {
+    OCA.converter.FileList = {
         attach: function (fileList) {
             if (fileList.id == "trashbin") {
                 return;
             }
 
             var register = function() {
-                var mimes = OCA.Onlyoffice.setting.formats;
+                var mimes = OCA.converter.setting.formats;
 
                 $.each(mimes, function (ext, attr) {
                     fileList.fileActions.registerAction({
-                        name: "onlyofficeOpen",
-                        displayName: t(OCA.Onlyoffice.AppName, "Open in ONLYOFFICE"),
+                        name: "converterOpen",
+                        displayName: t(OCA.converter.AppName, "Open in converter"),
                         mime: attr.mime,
                         permissions: OC.PERMISSION_READ,
                         icon: function () {
-                            return OC.imagePath(OCA.Onlyoffice.AppName, "app-dark");
+                            return OC.imagePath(OCA.converter.AppName, "app-dark");
                         },
                         actionHandler: function (fileName, context) {
-                            OCA.Onlyoffice.FileClick(fileName, context, attr);
+                            OCA.converter.FileClick(fileName, context, attr);
                         }
                     });
 
                     if (attr.def) {
-                        fileList.fileActions.setDefault(attr.mime, "onlyofficeOpen");
+                        fileList.fileActions.setDefault(attr.mime, "converterOpen");
                     }
                 });
             }
 
-            OCA.Onlyoffice.GetSettings(register);
+            OCA.converter.GetSettings(register);
         }
     };
 
-    OCA.Onlyoffice.NewFileMenu = {
+ /**
+	OCA.converter.NewFileMenu = {
         attach: function (menu) {
             var fileList = menu.fileList;
 
@@ -193,39 +194,40 @@
             }
 
             menu.addMenuEntry({
-                id: "onlyofficeDocx",
-                displayName: t(OCA.Onlyoffice.AppName, "Document"),
-                templateName: t(OCA.Onlyoffice.AppName, "Document"),
-                iconClass: "icon-onlyoffice-new-docx",
+                id: "converterDocx",
+                displayName: t(OCA.converter.AppName, "Document"),
+                templateName: t(OCA.converter.AppName, "Document"),
+                iconClass: "icon-converter-new-docx",
                 fileType: "docx",
                 actionHandler: function (name) {
-                    OCA.Onlyoffice.CreateFile(name + ".docx", fileList);
+                    OCA.converter.CreateFile(name + ".docx", fileList);
                 }
             });
 
             menu.addMenuEntry({
-                id: "onlyofficeXlsx",
-                displayName: t(OCA.Onlyoffice.AppName, "Spreadsheet"),
-                templateName: t(OCA.Onlyoffice.AppName, "Spreadsheet"),
-                iconClass: "icon-onlyoffice-new-xlsx",
+                id: "converterXlsx",
+                displayName: t(OCA.converter.AppName, "Spreadsheet"),
+                templateName: t(OCA.converter.AppName, "Spreadsheet"),
+                iconClass: "icon-converter-new-xlsx",
                 fileType: "xlsx",
                 actionHandler: function (name) {
-                    OCA.Onlyoffice.CreateFile(name + ".xlsx", fileList);
+                    OCA.converter.CreateFile(name + ".xlsx", fileList);
                 }
             });
 
             menu.addMenuEntry({
-                id: "onlyofficePpts",
-                displayName: t(OCA.Onlyoffice.AppName, "Presentation"),
-                templateName: t(OCA.Onlyoffice.AppName, "Presentation"),
-                iconClass: "icon-onlyoffice-new-pptx",
+                id: "converterPpts",
+                displayName: t(OCA.converter.AppName, "Presentation"),
+                templateName: t(OCA.converter.AppName, "Presentation"),
+                iconClass: "icon-converter-new-pptx",
                 fileType: "pptx",
                 actionHandler: function (name) {
-                    OCA.Onlyoffice.CreateFile(name + ".pptx", fileList);
+                    OCA.converter.CreateFile(name + ".pptx", fileList);
                 }
             });
         }
     };
+*/
 
     var initPage = function(){
         if ($("#isPublic").val() && !$("#dir").val().length) {
@@ -233,16 +235,16 @@
             var extension = fileName.substr(fileName.lastIndexOf(".") + 1);
 
             var initSharedButton = function() {
-                var mimes = OCA.Onlyoffice.setting.formats;
+                var mimes = OCA.converter.setting.formats;
 
                 var conf = mimes[extension];
                 if (conf) {
                     var button = document.createElement("a");
-                    button.href = OC.generateUrl("apps/" + OCA.Onlyoffice.AppName + "/s/" + encodeURIComponent($("#sharingToken").val()));
+                    button.href = OC.generateUrl("apps/" + OCA.converter.AppName + "/s/" + encodeURIComponent($("#sharingToken").val()));
                     button.className = "button";
-                    button.innerText = t(OCA.Onlyoffice.AppName, "Open in ONLYOFFICE")
+                    button.innerText = t(OCA.converter.AppName, "Open in converter")
 
-                    if (!OCA.Onlyoffice.setting.sameTab) {
+                    if (!OCA.converter.setting.sameTab) {
                         button.target = "_blank";
                     }
 
@@ -250,10 +252,10 @@
                 }
             };
 
-            OCA.Onlyoffice.GetSettings(initSharedButton);
+            OCA.converter.GetSettings(initSharedButton);
         } else {
-            OC.Plugins.register("OCA.Files.FileList", OCA.Onlyoffice.FileList);
-            OC.Plugins.register("OCA.Files.NewFileMenu", OCA.Onlyoffice.NewFileMenu);
+            OC.Plugins.register("OCA.Files.FileList", OCA.converter.FileList);
+           /* OC.Plugins.register("OCA.Files.NewFileMenu", OCA.converter.NewFileMenu);*/
         }
     };
 

@@ -11,20 +11,20 @@
  * THIS PROGRAM IS DISTRIBUTED WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR
  * FITNESS FOR A PARTICULAR PURPOSE. For more details, see GNU GPL at https://www.gnu.org/copyleft/gpl.html
  *
- * You can contact Ascensio System SIA by email at sales@onlyoffice.com
+ * You can contact Ascensio System SIA by email at sales@converter.com
  *
- * The interactive user interfaces in modified source and object code versions of ONLYOFFICE must display
+ * The interactive user interfaces in modified source and object code versions of converter must display
  * Appropriate Legal Notices, as required under Section 5 of the GNU GPL version 3.
  *
- * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original ONLYOFFICE logo which contains
+ * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original converter logo which contains
  * relevant author attributions when distributing the software. If the display of the logo in its graphic
- * form is not reasonably feasible for technical reasons, you must include the words "Powered by ONLYOFFICE"
+ * form is not reasonably feasible for technical reasons, you must include the words "Powered by converter"
  * in every copy of the program you distribute.
  * Pursuant to Section 7 § 3(e) we decline to grant you any rights under trademark law for use of our trademarks.
  *
  */
 
-namespace OCA\Converter\Controller;
+namespace OCA\converter\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
@@ -42,9 +42,9 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Share\IManager;
 
-use OCA\Converter\AppConfig;
-use OCA\Converter\Crypt;
-use OCA\Converter\DocumentService;
+use OCA\converter\AppConfig;
+use OCA\converter\Crypt;
+use OCA\converter\DocumentService;
 
 /**
  * Callback handler for the document server.
@@ -91,14 +91,14 @@ class CallbackController extends Controller {
     /**
      * Application configuration
      *
-     * @var OCA\Converter\AppConfig
+     * @var OCA\converter\AppConfig
      */
     private $config;
 
     /**
      * Hash generator
      *
-     * @var OCA\Converter\Crypt
+     * @var OCA\converter\Crypt
      */
     private $crypt;
 
@@ -130,8 +130,8 @@ class CallbackController extends Controller {
      * @param IUserManager $userManager - user manager
      * @param IL10N $trans - l10n service
      * @param ILogger $logger - logger
-     * @param OCA\Converter\AppConfig $config - application configuration
-     * @param OCA\Converter\Crypt $crypt - hash generator
+     * @param OCA\converter\AppConfig $config - application configuration
+     * @param OCA\converter\Crypt $crypt - hash generator
      * @param IManager $shareManager - Share manager
      */
     public function __construct($AppName, 
@@ -225,7 +225,7 @@ class CallbackController extends Controller {
      *
      * @param string $doc - verification token with the file identifier
      *
-     * @return OCA\Onlyoffice\DownloadResponse
+     * @return OCA\converter\DownloadResponse
      *
      * @NoAdminRequired
      * @NoCSRFRequired

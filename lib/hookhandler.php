@@ -19,29 +19,29 @@
  *
  */
 
-namespace OCA\Converter;
+namespace OCA\converter;
 
 use OCP\Util;
 
-use OCA\Converter\AppConfig;
+use OCA\converter\AppConfig;
 
 /**
  * Class HookHandler
  * 
  * handles hooks
  *
- * @package OCA\Onlyoffice
+ * @package OCA\converter
  */
 class HookHandler {
 
     public static function PublicPage() {
-        $appName = "Converter";
+        $appName = "сonverter";
 
         $appConfig = new AppConfig($appName);
 
         if (!empty($appConfig->GetDocumentServerUrl()) && $appConfig->SettingsAreSuccessful()) {
-            Util::addScript("Converter", "main");
-            Util::addStyle("Converter", "main");
+            Util::addScript("сonverter", "main");
+            Util::addStyle("сonverter", "main");
         }
     }
 }

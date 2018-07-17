@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0"?>
 <info>
-    <id>Converter</id>
-    <name>Convertertopdf</name>
-    <summary>Converter to pdf</summary>
+    <id>converter</id>
+    <name>converter</name>
+    <summary>converter to pdf</summary>
     <description>ONLYOFFICE connector enables you to edit Office documents within ONLYOFFICE from the familiar web interface. This will create a new Open in ONLYOFFICE action within the document library for Office documents. This allows multiple users to collaborate in real time and to save back those changes to your file storage.</description>
     <licence>agpl</licence>
     <author>berkut2123</author>
     <version>0.5</version>
-    <namespace>Converter</namespace>
+    <namespace>converter</namespace>
     <types>
         <filesystem/>
     </types>
@@ -31,7 +31,7 @@
         <nextcloud min-version="12" max-version="13"/>
     </dependencies>
     <settings>
-        <admin>OCA\Converter\AdminSettings</admin>
-        <admin-section>OCA\Converter\AdminSection</admin-section>
+        <admin>OCA\converter\AdminSettings</admin>
+        <admin-section>OCA\converter\AdminSection</admin-section>
     </settings>
 </info>

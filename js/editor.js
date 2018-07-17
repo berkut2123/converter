@@ -10,14 +10,14 @@
  * THIS PROGRAM IS DISTRIBUTED WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR
  * FITNESS FOR A PARTICULAR PURPOSE. For more details, see GNU GPL at https://www.gnu.org/copyleft/gpl.html
  *
- * You can contact Ascensio System SIA by email at sales@onlyoffice.com
+ * You can contact Ascensio System SIA by email at sales@converter.com
  *
- * The interactive user interfaces in modified source and object code versions of ONLYOFFICE must display
+ * The interactive user interfaces in modified source and object code versions of converter must display
  * Appropriate Legal Notices, as required under Section 5 of the GNU GPL version 3.
  *
- * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original ONLYOFFICE logo which contains
+ * Pursuant to Section 7 § 3(b) of the GNU GPL you must retain the original converter logo which contains
  * relevant author attributions when distributing the software. If the display of the logo in its graphic
- * form is not reasonably feasible for technical reasons, you must include the words "Powered by ONLYOFFICE"
+ * form is not reasonably feasible for technical reasons, you must include the words "Powered by converter"
  * in every copy of the program you distribute.
  * Pursuant to Section 7 § 3(e) we decline to grant you any rights under trademark law for use of our trademarks.
  *
@@ -25,14 +25,14 @@
 
 (function ($, OCA) {
 
-    OCA.Onlyoffice = _.extend({}, OCA.Onlyoffice);
-    if (!OCA.Onlyoffice.AppName) {
-        OCA.Onlyoffice = {
-            AppName: "onlyoffice"
+    OCA.converter = _.extend({}, OCA.converter);
+    if (!OCA.converter.AppName) {
+        OCA.converter = {
+            AppName: "converter"
         };
     }
 
-    OCA.Onlyoffice.InitEditor = function () {
+    OCA.converter.InitEditor = function () {
         var displayError = function (error) {
             $("#iframeEditor").text(error).addClass("error");
         };
@@ -40,17 +40,17 @@
         var fileId = $("#iframeEditor").data("id");
         var fileToken = $("#iframeEditor").data("token");
         if (!fileId && !fileToken) {
-            displayError(t(OCA.Onlyoffice.AppName, "FileId is empty"));
+            displayError(t(OCA.converter.AppName, "FileId is empty"));
             return;
         }
 
         if (typeof DocsAPI === "undefined" && !error.length) {
-            displayError(t(OCA.Onlyoffice.AppName, "ONLYOFFICE cannot be reached. Please contact admin"));
+            displayError(t(OCA.converter.AppName, "converter cannot be reached. Please contact admin"));
             return;
         }
 
         $.ajax({
-            url: OC.generateUrl("apps/onlyoffice/ajax/config/" + fileId + (fileToken ? "?token=" + encodeURIComponent(fileToken) : "")),
+            url: OC.generateUrl("apps/converter/ajax/config/" + fileId + (fileToken ? "?token=" + encodeURIComponent(fileToken) : "")),
             success: function onSuccess(config) {
                 if (config) {
                     if (config.error != null) {
@@ -89,6 +89,6 @@
         });
     };
 
-    $(document).ready(OCA.Onlyoffice.InitEditor);
+    $(document).ready(OCA.converter.InitEditor);
 
 })(jQuery, OCA);
