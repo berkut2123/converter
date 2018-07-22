@@ -113,8 +113,8 @@ class SettingsController extends Controller {
         $formats = $this->formats();
         $defFormats = array();
         foreach ($formats as $format => $setting) {
-            if (array_key_exists("edit", $setting) && $setting["edit"]) {
-                $defFormats[$format] = array_key_exists("def", $setting) && $setting["def"];
+            if (array_key_exists("conv", $setting) && $setting["conv"]) {
+                $defFormats[$format] = array_key_exists("def1", $setting) && $setting["def1"];
             }
         }
 
@@ -197,6 +197,7 @@ class SettingsController extends Controller {
 
     /**
      * Get supported formats
+     * Get supported formats
      *
      * @return array
      *
@@ -207,9 +208,9 @@ class SettingsController extends Controller {
 
         $result = $this->config->formats;
         foreach ($result as $format => $setting) {
-            if (array_key_exists("edit", $setting) && $setting["edit"]
+            if (array_key_exists("conv", $setting) && $setting["conv"]
                 && array_key_exists($format, $defFormats)) {
-                $result[$format]["def"] = ($defFormats[$format] === true || $defFormats[$format] === "true");
+                $result[$format]["def1"] = ($defFormats[$format] === true || $defFormats[$format] === "true");
             }
         }
 

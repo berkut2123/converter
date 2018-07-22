@@ -73,7 +73,7 @@
         );
     };
 
-    OCA.converter.OpenEditor = function (fileId, winEditor) {
+   OCA.converter.OpenEditor = function (fileId, winEditor) {
         var url = OC.generateUrl("/apps/" + OCA.converter.AppName + "/{fileId}",
             {
                 fileId: fileId
@@ -100,7 +100,7 @@
             return;
         }
 
-        OC.dialogs.confirm(t(OCA.converter.AppName, "The document file you open will be converted to the Office Open XML format for faster viewing and editing."),
+		OC.dialogs.confirm(t(OCA.converter.AppName, "The document file you open will be converted to the Office Open XML format for faster viewing and editing."),
             t(OCA.converter.AppName, "Convert and open document"),
             function (convert) {
                 if (!convert) {
@@ -174,7 +174,7 @@
                         }
                     });
 
-                    if (attr.def) {
+                    if (attr.def1) {
                         fileList.fileActions.setDefault(attr.mime, "converterOpen");
                     }
                 });
@@ -184,8 +184,8 @@
         }
     };
 
- /**
-	OCA.converter.NewFileMenu = {
+
+	/**OCA.converter.NewFileMenu = {
         attach: function (menu) {
             var fileList = menu.fileList;
 
@@ -226,8 +226,7 @@
                 }
             });
         }
-    };
-*/
+    };*/
 
     var initPage = function(){
         if ($("#isPublic").val() && !$("#dir").val().length) {
@@ -253,9 +252,10 @@
             };
 
             OCA.converter.GetSettings(initSharedButton);
-        } else {
+        } 
+		else {
             OC.Plugins.register("OCA.Files.FileList", OCA.converter.FileList);
-           /* OC.Plugins.register("OCA.Files.NewFileMenu", OCA.converter.NewFileMenu);*/
+            /**OC.Plugins.register("OCA.Files.NewFileMenu", OCA.converter.NewFileMenu);*/
         }
     };
 

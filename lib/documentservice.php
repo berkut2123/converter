@@ -113,7 +113,7 @@ class DocumentService {
      * @param bool - $is_async - Perform conversions asynchronously
      *
      * @return array
-0     */
+     */
     function SendRequestToConvertService($document_uri, $from_extension, $to_extension, $document_revision_id, $is_async) {
         if (empty($from_extension)) {
             $path_parts = pathinfo($document_uri);
@@ -137,7 +137,7 @@ class DocumentService {
             throw new \Exception($this->trans->t("converter app is not configured. Please contact admin"));
         }
 
-        $urlToconverter = $documentServerUrl . "ConvertService.ashx";
+        $urlToConverter = $documentServerUrl . "ConvertService.ashx";
 
         $data = json_encode(
             array(
@@ -169,14 +169,14 @@ class DocumentService {
             $opts["http"]["header"] = $opts["http"]["header"] . $this->config->JwtHeader() . ": Bearer " . $token . "\r\n";
         }
 
-        $ServiceconverterMaxTry = 3;
-        while ($countTry < $ServiceconverterMaxTry) {
+        $ServiceConverterMaxTry = 3;
+        while ($countTry < $ServiceConverterMaxTry) {
             $countTry = $countTry + 1;
-            $response_xml_data = $this->Request($urlToconverter, $opts);
+            $response_xml_data = $this->Request($urlToConverter, $opts);
             if ($response_xml_data !== false) { break; }
         }
 
-        if ($countTry === $ServiceconverterMaxTry) {
+        if ($countTry === $ServiceConverterMaxTry) {
             throw new \Exception ($this->trans->t("Bad Request or timeout error"));
         }
 
